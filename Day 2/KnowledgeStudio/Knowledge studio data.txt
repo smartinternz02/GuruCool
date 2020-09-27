@@ -1,1 +1,0 @@
-msg.url = "https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2018-03-16&text="+msg.payload.t+"&features=entities&entities.model=4dec343b-7ff3-497f-9464-b40040fc8830"
