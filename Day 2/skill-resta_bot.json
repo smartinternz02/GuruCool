@@ -1,0 +1,702 @@
+{
+  "intents": [
+    {
+      "intent": "enquiry",
+      "examples": [
+        {
+          "text": "What are the offers available ?"
+        },
+        {
+          "text": "What are the special items available ?"
+        },
+        {
+          "text": "What is the menu available ?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Greetings",
+      "examples": [
+        {
+          "text": "Good Afternoon"
+        },
+        {
+          "text": "Good Evening"
+        },
+        {
+          "text": "Good Morning"
+        },
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "Hi"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Order",
+      "examples": [
+        {
+          "text": "Can you place a order ?"
+        },
+        {
+          "text": "I want to place an order."
+        },
+        {
+          "text": "Order me !"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "email",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "email",
+          "patterns": [
+            "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "enquiry",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "menu",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "offers",
+          "synonyms": [
+            "bargains",
+            "deals",
+            "discount",
+            "discounts",
+            "offer"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "special items",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "greetings",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Good Afternon",
+          "synonyms": [
+            "Afternoon",
+            "Ga",
+            "Gud Aftrn"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Good Evening",
+          "synonyms": [
+            "Evening",
+            "Ge",
+            "Gud Evng"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Good morning",
+          "synonyms": [
+            "Gm",
+            "Gud Mrng",
+            "Morning",
+            "Mrng"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "menu",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Burger",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Cool Drinks",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Mutton Chops",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Panner Biryani",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Sandwich",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "order",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "order",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "payment",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Card",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "COD",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "UPI",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "special_items",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Chicken nuggets",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Gulab Jamoon",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Pizza",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-number",
+      "values": []
+    },
+    {
+      "entity": "sys-person",
+      "values": []
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_9_1549878921517"
+    },
+    {
+      "type": "event_handler",
+      "parent": "node_9_1549878921517",
+      "event_name": "focus",
+      "dialog_node": "handler_10_1549879039136",
+      "previous_sibling": "slot_17_1549879743726"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_11_1549879039168",
+      "context": {
+        "menu": "@menu"
+      },
+      "metadata": {},
+      "conditions": "@menu",
+      "event_name": "input",
+      "dialog_node": "handler_12_1549879039168"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Can you provide me the item you want? You can have a glance on the menu."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_11_1549879039168",
+      "event_name": "focus",
+      "dialog_node": "handler_13_1549879039168",
+      "previous_sibling": "handler_12_1549879039168"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_14_1549879697779",
+      "context": {
+        "number": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_15_1549879697779"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "How many would you like to order ?"
+      },
+      "parent": "slot_14_1549879697779",
+      "event_name": "focus",
+      "dialog_node": "handler_16_1549879697779",
+      "previous_sibling": "handler_15_1549879697779"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_17_1549879743726",
+      "context": {
+        "payment": "@payment"
+      },
+      "conditions": "@payment",
+      "event_name": "input",
+      "dialog_node": "handler_18_1549879743726"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "We accept COD,Card, UPI . What is your mode of payment"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_17_1549879743726",
+      "event_name": "focus",
+      "dialog_node": "handler_19_1549879743726",
+      "previous_sibling": "handler_18_1549879743726"
+    },
+    {
+      "type": "standard",
+      "title": "enquiry",
+      "output": {},
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#enquiry || @enquiry",
+      "digress_in": "returns",
+      "dialog_node": "node_1_1549876201326",
+      "digress_out": "allow_all_never_return",
+      "previous_sibling": "node_2_1549869380798"
+    },
+    {
+      "type": "standard",
+      "title": "deleting context",
+      "output": {
+        "deleted": "<?context.remove('email')?><?context.remove('menu')?><?context.remove('number')?><?context.remove('payment')?>",
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1549878921517",
+      "metadata": {},
+      "conditions": "true",
+      "dialog_node": "node_1_1549883424974"
+    },
+    {
+      "type": "standard",
+      "title": "MAIL ID",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello, Your mail Id  $email is taken for future reference. How may I help You?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "context": {
+        "email": "@email.literal"
+      },
+      "metadata": {},
+      "conditions": "@email",
+      "dialog_node": "node_20_1549880892862"
+    },
+    {
+      "type": "standard",
+      "title": "Greetings",
+      "output": {},
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "Welcome"
+      },
+      "conditions": "#Greetings || @greetings",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_2_1549869380798",
+      "digress_out": "allow_all",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "Menu",
+            "source": "https://im1.dineout.co.in/images/uploads/restaurant/sharpen/4/j/o/m41327-15239489375ad59d896b40e.jpg",
+            "response_type": "image"
+          }
+        ]
+      },
+      "parent": "node_1_1549876201326",
+      "metadata": {},
+      "conditions": "@enquiry:menu",
+      "dialog_node": "node_2_1549876259982",
+      "previous_sibling": "node_5_1549877945542"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "@greetings"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1549869380798",
+      "metadata": {},
+      "conditions": "@greetings",
+      "dialog_node": "node_3_1549869633540"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "10% discount on Starters"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "multiline"
+          },
+          {
+            "values": [
+              {
+                "text": "5% discount on Vegeterians"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1549876201326",
+      "metadata": {},
+      "conditions": "@enquiry:offers",
+      "dialog_node": "node_3_1549876920294",
+      "previous_sibling": "node_2_1549876259982"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hi"
+              }
+            ],
+            "response_type": "text"
+          }
+        ]
+      },
+      "parent": "node_2_1549869380798",
+      "metadata": {},
+      "conditions": "anything_else",
+      "dialog_node": "node_4_1549869837157",
+      "previous_sibling": "node_3_1549869633540"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "Special Items",
+            "options": [
+              {
+                "label": "Chicken Nuggets",
+                "value": {
+                  "input": {
+                    "text": "Chicken Nuggets"
+                  }
+                }
+              },
+              {
+                "label": "Gulab Jamoon",
+                "value": {
+                  "input": {
+                    "text": "Gulab Jamoon"
+                  }
+                }
+              },
+              {
+                "label": "Pizza",
+                "value": {
+                  "input": {
+                    "text": "Pizza"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_1_1549876201326",
+      "metadata": {},
+      "conditions": "@enquiry:(special items)",
+      "dialog_node": "node_4_1549877360998",
+      "previous_sibling": "node_3_1549876920294"
+    },
+    {
+      "type": "standard",
+      "title": "Special items",
+      "output": {},
+      "parent": "node_1_1549876201326",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "@special_items",
+      "dialog_node": "node_5_1549877945542",
+      "digress_out": "allow_all"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "it cost  150/- per pack"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1549877945542",
+      "metadata": {},
+      "conditions": "@special_items:(Chicken nuggets)",
+      "dialog_node": "node_6_1549878028779"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "it cost  200/- per pack"
+              }
+            ],
+            "response_type": "text"
+          }
+        ]
+      },
+      "parent": "node_5_1549877945542",
+      "metadata": {},
+      "conditions": "@special_items:(Gulab Jamoon)",
+      "dialog_node": "node_7_1549878068272",
+      "previous_sibling": "node_6_1549878028779"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "it cost  150/-"
+              }
+            ],
+            "response_type": "text"
+          }
+        ]
+      },
+      "parent": "node_5_1549877945542",
+      "metadata": {},
+      "conditions": "@special_items:Pizza",
+      "dialog_node": "node_8_1549878087549",
+      "previous_sibling": "node_7_1549878068272"
+    },
+    {
+      "type": "frame",
+      "title": "order",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thank You, Your order of $menu of $number is placed successfully. Please pay using $payment . and the receipt is sent to $email . "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {
+        "fallback": "leave"
+      },
+      "next_step": {
+        "behavior": "skip_user_input"
+      },
+      "conditions": "#Order && @order:order",
+      "digress_in": "returns",
+      "dialog_node": "node_9_1549878921517",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_1_1549876201326",
+      "digress_out_slots": "allow_returning"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_9_1549878921517",
+      "metadata": {},
+      "variable": "$menu",
+      "dialog_node": "slot_11_1549879039168",
+      "previous_sibling": "node_1_1549883424974"
+    },
+    {
+      "type": "slot",
+      "parent": "node_9_1549878921517",
+      "variable": "$number",
+      "dialog_node": "slot_14_1549879697779",
+      "previous_sibling": "slot_11_1549879039168"
+    },
+    {
+      "type": "slot",
+      "parent": "node_9_1549878921517",
+      "variable": "$payment",
+      "dialog_node": "slot_17_1549879743726",
+      "previous_sibling": "slot_14_1549879697779"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. I am a restaurant bot capable of taking orders and provide you with items present in the restaurant. May I know your name and mail ID?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "welcome || @email",
+      "digress_in": "does_not_return",
+      "dialog_node": "Welcome",
+      "digress_out": "allow_all_never_return"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "tooling": {
+      "store_generic_responses": true
+    }
+  },
+  "learning_opt_out": false,
+  "name": "resta_bot",
+  "language": "en",
+  "description": ""
+}
